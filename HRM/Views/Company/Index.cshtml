@@ -1,0 +1,283 @@
+﻿@model HRM.Models.LSCompanyModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+<h2 id="title"></h2>
+
+<ul class="nav nav-pills" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" id="Tlist-tab" href="#list">List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" onclick="AddCompany(0)" id="Infor-tab" data-toggle="tab" href="#Infor"></a>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade in active" id="list" style="margin-top:35px">
+        <table class="display" id="listCompany">
+            <thead>
+                <tr>
+                    <th>LSCompanyCode</th>
+                    <th>ShortName</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="Infor" class="tab-pane fade" style="position:absolute;top:12em">
+        <form id="form">
+            <fieldset id="Submitform">
+
+                <input type="hidden" id="LSCompanyID" name="LSCompanyID">
+
+                <div class="form-group col-md-10">
+                    <label for="LSCompanyCode" class="control-label col-md-2">Company Code</label>
+                    <input type="text" class="form-control" id="LSCompanyCode" name="LSCompanyCode" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="ShortName" class="control-label col-md-2">Short Name</label>
+                    <input type="text" class="form-control" id="ShortName" name="ShortName" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Name" class="control-label col-md-2">Name</label>
+                    <input type="text" class="form-control" id="Name" name="Name" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Address" class="control-label col-md-2">Address</label>
+                    <input type="text" class="form-control" id="Address" name="Address" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Phone" class="control-label col-md-2">Phone</label>
+                    <input type="text" class="form-control" id="Phone" name="Phone" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Fax" class="control-label col-md-2">Fax</label>
+                    <input type="text" class="form-control" id="Fax" name="Fax" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Rank" class="control-label col-md-2">Rank</label>
+                    <input type="text" class="form-control" id="Rank" name="Rank" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Note" class="control-label col-md-2">Note</label>
+                    <input type="text" class="form-control" id="Note" name="Note" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.Used, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Used, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="WorkingPlace" class="control-label col-md-2">Working Place</label>
+                    <input type="text" class="form-control" id="WorkingPlace" name="WorkingPlace" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Creater" class="control-label col-md-2">Creater</label>
+                    <input type="text" class="form-control" id="Creater" name="Creater" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Editer" class="control-label col-md-2">Editer</label>
+                    <input type="text" class="form-control" id="Editer" name="Editer" />
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input value="Save" class="btn btn-default" id="SaveCompany" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function (res) {
+            document.getElementById("title").innerHTML = "Index";
+            document.getElementById("Infor-tab").innerHTML = "Create";
+            $('#listCompany').DataTable({
+                ajax: {
+                    url: "/Company/GetData",
+                    type: "POST",
+                    datatype: "json",
+                    dataSrc: ""
+                },
+
+                "columns": [
+                    {
+                        "targets": [0],
+                        "data": "LSCompanyCode"
+                    },
+                    {
+                        "targets": [1],
+                        "data": "ShortName"
+                    },
+                    {
+                        "targets": [2],
+                        "data": "Name"
+                    },
+                    {
+                        "targets": [3],
+                        "data": "Address"
+                    },
+                    {
+                        "targets": [4],
+                        "data": "LSCompanyID",
+                        "render": function (data, type, row, meta) {
+                            return "<a class = 'btn btn-warning nav-link' id = 'edit'  href = '#Infor' data-toggle='tab' onclick = 'EditCompany(\"" + data + "\")'>Edit</a>" +
+                                " <a class = 'btn btn-danger' id = 'delete' onclick = 'DeleteCompany(\"" + data + "\")'>Delete</a>";
+                        }
+                    },
+                ],
+                "serverside": "true",
+                'order': [0, "asc"],
+            });
+            $("#listCompany_filter input").prop('id', 'search_box');
+            $("#search_box").css({
+                "borderRadius": "11px", "height": "40px", "border": "1px solid gainsboro"
+            });
+            $("#search_box").focus(function () {
+                $("#search_box").css({ "outline": "none" });
+            })
+        })
+
+        $('#listCompany thead tr').append('<th/>');
+
+        $("#Tlist-tab").click(function () {
+            document.getElementById("title").innerHTML = "Index";
+            document.getElementById("Infor-tab").innerHTML = "Create";
+            document.getElementById("list").style.height = "0em";
+        })
+
+        function AddCompany(LSCompanyID) {
+            document.getElementById("myTabContent").style.marginBottom = '27em';
+            $("#LSCompanyID").val("");
+            $("#LSCompanyCode").val("");
+            $("#ShortName").val("");
+            $("#Name").val("");
+            $("#Address").val("");
+            $("#Phone").val("");
+            $("#Fax").val("");
+            $("#Rank").val("");
+            $("#Note").val("");
+            $("#WorkingPlace").val("");
+            $("#Creater").val("");
+            $("#Editer").val("");
+            document.getElementById("title").innerHTML = "Create New";
+            document.getElementById("Infor-tab").innerHTML = "Create";
+            document.getElementById("list").style.height = '26em';
+            $("#SaveCompany").click(function () {
+                var data = $("#Submitform").serialize();
+                $.ajax({
+                    type: "Post",
+                    url: "/Company/CreateCompany",
+                    data: data,
+                    success: function (result) {
+                        alert("Success!");
+                        window.location.href = "/Company/Index";
+                    }
+                })
+            })
+        }
+
+        function EditCompany(ID) {
+            console.log(ID);
+            document.getElementById("title").innerHTML = "Edit Record";
+            document.getElementById("Infor-tab").innerHTML = "Edit";
+            document.getElementById("myTabContent").style.marginBottom = "26em";
+            $("#Infor-tab").tab('show');
+            $.ajax({
+                type: 'GET',
+                url: '/Company/UpdateCom/' + ID,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].LSCompanyID === ID) {
+                            $("#LSCompanyID").val(data[i].LSCompanyID);
+                            $("#LSCompanyCode").val(data[i].LSCompanyCode);
+                            $("#ShortName").val(data[i].ShortName);
+                            $("#Name").val(data[i].Name);
+                            $("#Address").val(data[i].Address);
+                            $("#Phone").val(data[i].Phone);
+                            $("#Fax").val(data[i].Fax);
+                            $("#Rank").val(data[i].Rank);
+                            $("#Note").val(data[i].Note);
+                            $("#WorkingPlace").val(data[i].WorkingPlace);
+                            $("#Creater").val(data[i].Creater);
+                            $("#Editer").val(data[i].Editer);
+                            break;
+                        }
+                    }
+                }
+            });
+            $("#SaveCompany").click(function () {
+                console.log(LSCompanyID);
+                var data = $("#Submitform").serialize();
+                $.ajax({
+                    type: "Post",
+                    url: '/Company/UpdateCom/' + ID,
+                    dataType: 'json',
+                    data: data,
+                    success: function (result) {
+                        alert("success!")
+                        window.location.href = "/Company/Index";
+                    }
+                })
+            })
+        }
+
+        function DeleteCompany(LSCompanyID) {
+            console.log(LSCompanyID);
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this record!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, Delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Company/DeleteCom/' + LSCompanyID,
+                            success: function (response) {
+                                window.location.href = response.Url;
+                            },
+                            error: function (data) {
+                                swal("NOT Deleted!", "Something went wrong.", "error");
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Your record is safe :)", "error");
+                    }
+                });
+            return false;
+        }
+    </script>
+}

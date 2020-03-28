@@ -1,0 +1,523 @@
+﻿@model HRM.Models.Employee
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+<style>
+.form-group.col-md-10 {
+    display: flex;
+}
+</style>
+
+<h2 id="title"></h2>
+
+<ul class="nav nav-pills" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" id="Tlist-tab" href="#list">List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" onclick="AddEmployee(0)" id="Infor-tab" data-toggle="tab" href="#Infor"></a>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade in active" id="list" style="margin-top:35px">
+        <table class="display" id="listEmployee">
+            <thead>
+                <tr>
+                    <th>EmpID</th>
+                    <th>VLastName</th>
+                    <th>VFirstName</th>
+                    <th>NickName</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+
+    <div id="Infor" class="tab-pane fade" style="position:absolute;top:12em">
+        <form id="form">
+            <fieldset id="Submitform">
+
+                <input type="hidden" id="EmpID" name="EmpID">
+
+                <div class="form-group col-md-10">
+                    <label for="VLastName" class="control-label col-md-2">Last Name</label>
+                    <input type="text" class="form-control" id="VLastName" name="VLastName" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="VFirstName" class="control-label col-md-2">Name</label>
+                    <input type="text" class="form-control" id="VFirstName" name="VFirstName" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="NickName" class="control-label col-md-2">Nick Name</label>
+                    <input type="text" class="form-control" id="NickName" name="NickName" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="DOB" class="control-label col-md-2">Date Of Birth</label>
+                    <input type="text" class="form-control datepicker" id="DOB" name="DOB" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.Gender, "1")<text>Male</text>
+                        @Html.RadioButtonFor(model => model.Gender, "0")<text>Female</text>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSMaritalID" class="control-label col-md-2">LSMaritalID</label>
+                    <input type="text" class="form-control" id="LSMaritalID" name="LSMaritalID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Born_District" class="control-label col-md-2">Born_District</label>
+                    <input type="text" class="form-control" id="Born_District" name="Born_District" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Born_LSProvinceID" class="control-label col-md-2">Born_LSProvinceID</label>
+                    <input type="text" class="form-control" id="Born_LSProvinceID" name="Born_LSProvinceID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Native_District" class="control-label col-md-2">Native_District</label>
+                    <input type="text" class="form-control" id="Native_District" name="Native_District" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Native_LSProvinceID" class="control-label col-md-2">Native_LSProvinceID</label>
+                    <input type="text" class="form-control" id="Native_LSProvinceID" name="Native_LSProvinceID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSEthnicID" class="control-label col-md-2">LSEthnicID</label>
+                    <input type="text" class="form-control" id="LSEthnicID" name="LSEthnicID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="IDNo" class="control-label col-md-2">IDNo</label>
+                    <input type="text" class="form-control" id="IDNo" name="IDNo" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="IDIssuedDate" class="control-label col-md-2">IDIssuedDate</label>
+                    <input type="text" class="form-control datepicker" id="IDIssuedDate" name="IDIssuedDate" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="IDIssuedPlace" class="control-label col-md-2">IDIssuedPlace</label>
+                    <input type="text" class="form-control" id="IDIssuedPlace" name="IDIssuedPlace" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Mobifone" class="control-label col-md-2">Mobifone</label>
+                    <input type="text" class="form-control" id="Mobifone" name="Mobifone" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Telephone" class="control-label col-md-2">Telephone</label>
+                    <input type="text" class="form-control" id="Telephone" name="Telephone" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Email" class="control-label col-md-2">Email</label>
+                    <input type="text" class="form-control" id="Email" name="Email" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSNationalityID" class="control-label col-md-2">LSNationalityID</label>
+                    <input type="text" class="form-control" id="LSNationalityID" name="LSNationalityID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSCultureLevelID" class="control-label col-md-2">LSCultureLevelID</label>
+                    <input type="text" class="form-control" id="LSCultureLevelID" name="LSCultureLevelID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="ScanCode" class="control-label col-md-2">ScanCode</label>
+                    <input type="text" class="form-control" id="ScanCode" name="ScanCode" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Note" class="control-label col-md-2">Note</label>
+                    <input type="text" class="form-control" id="Note" name="Note" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Creater" class="control-label col-md-2">Creater</label>
+                    <input type="text" class="form-control" id="Creater" name="Creater" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="Editer" class="control-label col-md-2">Editer</label>
+                    <input type="text" class="form-control" id="Editer" name="Editer" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="BankNo" class="control-label col-md-2">BankNo</label>
+                    <input type="text" class="form-control" id="BankNo" name="BankNo" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSBankID" class="control-label col-md-2">LSBankID</label>
+                    @Html.DropDownList("LSBankID", (IEnumerable<SelectListItem>)ViewBag.BankID, "--Select Bank--", htmlAttributes: new { @class = "form-control", @id = "LSBankID" })
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.IsEmpBook, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.IsEmpBook, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.IsEmpCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.IsEmpCode, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.IsUniform, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.IsUniform, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.IsTrain, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.IsTrain, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group col-md-10">  
+                    <label for="EmpCode" class="control-label col-md-2">EmpCode</label>
+                    <input type="text" class="form-control" id="EmpCode" name="EmpCode" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="EmpCodeOld" class="control-label col-md-2">EmpCodeOld</label>
+                    <input type="text" class="form-control" id="EmpCodeOld" name="EmpCodeOld" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="StartDate" class="control-label col-md-2">StartDate</label>
+                    <input type="text" class="form-control datepicker" id="StartDate" name="StartDate" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSCompanyID" class="control-label col-md-2">Company</label>
+                    @Html.DropDownList("LSCompanyID", (IEnumerable<SelectListItem>)ViewBag.comID, "--Select Company--", htmlAttributes: new { @class = "form-control", @id = "LSCompanyID" })
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSLevel1ID" class="control-label col-md-2">LSLevel1ID</label>
+                    <input type="text" class="form-control" id="LSLevel1ID" name="LSLevel1ID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSLevel2ID" class="control-label col-md-2">LSLevel2ID</label>
+                    <input type="text" class="form-control" id="LSLevel2ID" name="LSLevel2ID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSLevel3ID" class="control-label col-md-2">LSLevel3ID</label>
+                    <input type="text" class="form-control" id="LSLevel3ID" name="LSLevel3ID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSLevel4ID" class="control-label col-md-2">LSLevel4ID</label>
+                    <input type="text" class="form-control" id="LSLevel4ID" name="LSLevel4ID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSPositionID" class="control-label col-md-2">LSPositionID</label>
+                    <input type="text" class="form-control" id="LSPositionID" name="LSPositionID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSJobTitleID" class="control-label col-md-2">LSJobTitleID</label>
+                    <input type="text" class="form-control" id="LSJobTitleID" name="LSJobTitleID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSLocationID" class="control-label col-md-2">LSLocationID</label>
+                    <input type="text" class="form-control" id="LSLocationID" name="LSLocationID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label for="LSEmpTypeID" class="control-label col-md-2">LSEmpTypeID</label>
+                    <input type="text" class="form-control" id="LSEmpTypeID" name="LSEmpTypeID" />
+                </div>
+
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Active, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input value="Save" class="btn btn-default" id="SaveEmployee" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "yy/mm/dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+100",
+                showOn: "both",
+                buttonText: "Select"
+            });
+        })
+
+        $(document).ready(function (res) {
+            document.getElementById("title").innerHTML = "Index";
+            document.getElementById("Infor-tab").innerHTML = "Create";
+            $('#listEmployee').DataTable({
+                ajax: {
+                    //url: "/Employee/GetData",
+                    url: "/api/Test/GetAllEmp",
+                    type: "GET",
+                    datatype: "json",
+                    dataSrc: ""
+                },
+
+                "columns": [
+                    {
+                        "targets": [0],
+                        "data": "EmpID"
+                    },
+                    {
+                        "targets": [1],
+                        "data": "VLastName"
+                    },
+                    {
+                        "targets": [2],
+                        "data": "VFirstName"
+                    },
+                    {
+                        "targets": [3],
+                        "data": "NickName"
+                    },
+                    {
+                        "targets": [4],
+                        "data": "DOB"
+                    },
+                    {
+                        "targets": [5],
+                        "data": "Gender"
+                    },
+                    {
+                        "targets": [6],
+                        "data": "Email"
+                    },
+                    {
+                        "targets": [7],
+                        "data": "EmpID",
+                        "render": function (data, type, row, meta) {
+                            return "<a class = 'btn btn-warning nav-link'  href = '#Infor' data-toggle='tab' onclick = 'EditEmployee(\"" + data + "\")'>Edit</a>" +
+                                " <a class = 'btn btn-danger' onclick = 'DeleteEmployee(\"" + data + "\")'>Delete</a>";
+                        }
+                    },
+                ],
+                "serverside": "true",
+                'order': [0, "asc"],
+            });
+            $("#listEmployee_filter input").prop('id', 'search_box');
+            $("#search_box").css({
+                "borderRadius": "11px", "height": "40px", "border": "1px solid gainsboro"
+            });
+            $("#search_box").focus(function () {
+                $("#search_box").css({ "outline": "none" });
+            })
+        })
+
+        $('#listEmployee thead tr').append('<th/>');
+
+        function AddEmployee(EmpID) {
+            document.getElementById("myTabContent").style.marginBottom = '155em';
+            $("#EmpID").val("");
+            $("#VLastName").val("");
+            $("#VFirstName").val("");
+            $("#NickName").val("");
+            $("#DOB").val("");
+            $("#LSMaritalID").val("");
+            $("#Born_District").val("");
+            $("#Born_LSProvinceID").val("");
+            $("#Native_District").val("");
+            $("#Native_LSProvinceID").val("");
+            $("#LSEthnicID").val("");
+            $("#IDNo").val("");
+            $("#IDIssuedDate").val("");
+            $("#IDIssuedPlace").val("");
+            $("#Mobifone").val("");
+            $("#Telephone").val("");
+            $("#Email").val("");
+            $("#LSNationalityID").val("");
+            $("#LSCultureLevelID").val("");
+            $("#ScanCode").val("");
+            $("#Note").val("");
+            $("#Creater").val(""); $("#Creater").prop("disabled", false);
+            $("#Editer").val("");
+            $("#BankNo").val("");
+            $("#LSBankID").val("");
+            $("#EmpCode").val("");
+            $("#EmpCodeOld").val("");
+            $("#StartDate").val("");
+            $("#LSCompanyID").val("");
+            $("#LSLevel1ID").val("");
+            $("#LSLevel2ID").val("");
+            $("#LSLevel3ID").val("");
+            $("#LSLevel4ID").val("");
+            $("#LSPositionID").val("");
+            $("#LSLocationID").val("");
+            $("#LSEmpTypeID").val("");
+            document.getElementById("title").innerHTML = "Create New";
+            document.getElementById("Infor-tab").innerHTML = "Create";
+            document.getElementById("list").style.height = '26em';
+            $("#SaveEmployee").click(function () {
+                var data = $("#Submitform").serialize();
+                $.ajax({
+                    type: "Post",
+                    url: "/api/Test/Create",
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                        alert("Success!");
+                        window.location.href = "/Employee/Index";
+                    }
+                })
+            })
+        }
+
+        $("#Tlist-tab").click(function () {
+            document.getElementById("title").innerHTML = "Index";
+            document.getElementById("Infor-tab").innerHTML = "Create";
+            document.getElementById("list").style.height = "0em";
+            document.getElementById("myTabContent").style.marginBottom = '48em';
+        })
+
+        function EditEmployee(ID) {
+            console.log(ID);
+            document.getElementById("title").innerHTML = "Edit Record";
+            document.getElementById("Infor-tab").innerHTML = "Edit";
+            document.getElementById("myTabContent").style.marginBottom = "155em";
+            $("#Infor-tab").tab('show');
+            $.ajax({
+                type: 'GET',
+                url: '/api/Test/GetEmpByID/' + ID,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].EmpID ===  ID) {
+                            $("#EmpID").val(data[i].EmpID);
+                            $("#VLastName").val(data[i].VLastName);
+                            $("#VFirstName").val(data[i].VFirstName);
+                            $("#NickName").val(data[i].NickName);
+                            $("#DOB").val(data[i].DOB);
+                            $("#LSMaritalID").val(data[i].LSMaritalID);
+                            $("#Born_District").val(data[i].Born_District);
+                            $("#Born_LSProvinceID").val(data[i].Born_LSProvinceID);
+                            $("#Native_District").val(data[i].Native_District);
+                            $("#Native_LSProvinceID").val(data[i].Native_LSProvinceID);
+                            $("#LSEthnicID").val(data[i].LSEthnicID);
+                            $("#IDNo").val(data[i].IDNo);
+                            $("#IDIssuedDate").val(data[i].IDIssuedDate);
+                            $("#IDIssuedPlace").val(data[i].IDIssuedPlace);
+                            $("#Mobifone").val(data[i].Mobifone);
+                            $("#Telephone").val(data[i].Telephone);
+                            $("#Email").val(data[i].Email);
+                            $("#LSNationalityID").val(data[i].LSNationalityID);
+                            $("#LSCultureLevelID").val(data[i].LSCultureLevelID);
+                            $("#ScanCode").val(data[i].ScanCode);
+                            $("#Note").val(data[i].Note);
+                            $("#Creater").val(data[i].Creater); $("#Creater").prop("disabled", true);
+                            $("#Editer").val(data[i].Editer);
+                            $("#BankNo").val(data[i].BankNo);
+                            $("#LSBankID").val(data[i].LSBankID);
+                            $("#EmpCode").val(data[i].EmpCode);
+                            $("#EmpCodeOld").val(data[i].EmpCodeOld);
+                            $("#StartDate").val(data[i].StartDate);
+                            $("#LSCompanyID").val(data[i].LSCompanyID);
+                            $("#LSLevel1ID").val(data[i].LSLevel1ID);
+                            $("#LSLevel2ID").val(data[i].LSLevel2ID);
+                            $("#LSLevel3ID").val(data[i].LSLevel3ID);
+                            $("#LSLevel4ID").val(data[i].LSLevel4ID);
+                            $("#LSPositionID").val(data[i].LSPositionID);
+                            $("#LSLocationID").val(data[i].LSLocationID);
+                            $("#LSEmpTypeID").val(data[i].LSEmpTypeID);
+                            break;
+                        }
+                    }
+                }
+            });
+            $("#SaveEmployee").click(function () {
+                var data = $("#Submitform").serialize();
+                $.ajax({
+                    type: "Put",
+                    url: "/api/Test/UpdateEmp/" + ID,
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                        alert("Success!");
+                        window.location.href = "/Employee/Index";
+                    }
+                })
+            })
+        }
+
+        function DeleteEmployee(EmpID) {
+            console.log(EmpID);
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this record!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, Delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: 'Post',
+                        url: '/api/Test/DeleteEmp/' + EmpID,
+                        success: function (response) {
+                            window.location.href = "/Employee/Index";
+                        },
+                        error: function (data) {
+                            swal("NOT Deleted!", "Something went wrong.", "error");
+                        }
+                    });
+                } else {
+                    swal("Cancelled", "Your record is safe :)", "error");
+                }
+            });
+        return false;
+        }
+    </script>
+}

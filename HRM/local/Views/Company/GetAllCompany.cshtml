@@ -1,0 +1,144 @@
+﻿@model HRM.Models.LSCompanyModel
+
+@{
+    ViewBag.Title = "GetAllCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetAllCompany</h2>
+@using (Html.BeginForm("GetAllCompany", "Company", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.searchtxt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.searchtxt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.searchtxt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "CreateCompany")
+</p>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            @*<th>
+            @Html.DisplayNameFor(model => model.LSCompanyID)
+        </th>*@
+            @*@Html.HiddenFor(model => model.LSCompanyID)*@
+            <th>
+                @Html.DisplayNameFor(model => model.LSCompanyCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Used)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkingPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Creater)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Editer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditTime)
+        </th>*@
+            <th></th>
+        </tr>
+    </thead>
+
+    @if (ViewBag.com != null)
+    {
+        foreach (System.Data.DataRow item in ViewBag.com.Rows)
+        {
+            <tr>
+                @Html.HiddenFor(model => item["LSCompanyID"])
+                <td>
+                    @item["LSCompanyCode"]
+                </td>
+                <td>
+                    @item["ShortName"]
+                </td>
+                <td>
+                    @item["Name"]
+                </td>
+                <td>
+                    @item["Address"]
+                </td>
+                @*<td>
+                        @item["Phone"]
+                    </td>
+                    <td>
+                        @item["Fax"]
+                    </td>
+                    <td>
+                        @item["Rank"]
+                    </td>
+                    <td>
+                        @item["Note"]
+                    </td>
+                    <td>
+                        @item["Used"]
+                    </td>
+                    <td>
+                        @item["WorkingPlace"]
+                    </td>
+                    <td>
+                        @item["Creater"]
+                    </td>
+                    <td>
+                        @item["CreateTime"]
+                    </td>
+                    <td>
+                        @item["Editer"]
+                    </td>
+                    <td>
+                        @item["EditTime"]
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "UpdateCom", new { id = @item["LSCompanyID"] }) |
+                    @Html.ActionLink("Details", "Details", new { id = @item["LSCompanyID"] }) |
+                    @Html.ActionLink("Delete", "DeleteCom", new { id = @item["LSCompanyID"] })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

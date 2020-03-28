@@ -1,0 +1,135 @@
+﻿@model HRM.Models.LSCompanyModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LSCompanyModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (System.Data.DataRow item in ViewBag.com.Rows)
+        {
+            @Html.HiddenFor(model => model.LSCompanyID)
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSCompanyCode)
+            </dt>
+
+            <dd>
+                @item["LSCompanyCode"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ShortName)
+            </dt>
+
+            <dd>
+                @item["ShortName"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @item["Name"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @item["Address"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @item["Phone"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fax)
+            </dt>
+
+            <dd>
+                @item["Fax"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rank)
+            </dt>
+
+            <dd>
+                @item["Rank"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @item["Note"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Used)
+            </dt>
+
+            <dd>
+                @item["Used"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.WorkingPlace)
+            </dt>
+
+            <dd>
+                @item["WorkingPlace"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Creater)
+            </dt>
+
+            <dd>
+                @item["Creater"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </dt>
+
+            <dd>
+                @item["CreateTime"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Editer)
+            </dt>
+
+            <dd>
+                @item["Editer"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EditTime)
+            </dt>
+
+            <dd>
+                @item["EditTime"]
+            </dd>
+        }
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "GetAllCompany")
+</p>

@@ -1,0 +1,189 @@
+﻿@model HRM.Models.LSCompanyModel
+
+@{
+    ViewBag.Title = "DeleteCom";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $(document).on('submit', '[id^=submit_Form]', function (e) {
+        e.preventDefault();
+
+        var data = $(this).serialize();
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this record!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel plx!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("DeleteCom")',
+                        data: data,
+                        success: function (response) {
+                            window.location.href = response.Url;
+                        },
+                        error: function (data) {
+                            swal("NOT Deleted!", "Something went wrong.", "error");
+                        }
+                    });
+                } else {
+                    swal("Cancelled", "Your record is safe :)", "error");
+                }
+            });
+
+        return false;
+    });
+</script>
+<h2>DeleteCom</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LSCompanyModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (System.Data.DataRow item in ViewBag.com.Rows)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.LSCompanyID)
+            </dt>
+
+            <dd>
+                @item["LSCompanyID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSCompanyCode)
+            </dt>
+
+            <dd>
+                @item["LSCompanyCode"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ShortName)
+            </dt>
+
+            <dd>
+                @item["ShortName"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @item["Name"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @item["Address"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @item["Phone"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fax)
+            </dt>
+
+            <dd>
+                @item["Fax"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rank)
+            </dt>
+
+            <dd>
+                @item["Rank"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @item["Note"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Used)
+            </dt>
+
+            <dd>
+                @item["Used"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.WorkingPlace)
+            </dt>
+
+            <dd>
+                @item["WorkingPlace"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Creater)
+            </dt>
+
+            <dd>
+                @item["Creater"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </dt>
+
+            <dd>
+                @item["CreateTime"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Editer)
+            </dt>
+
+            <dd>
+                @item["Editer"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EditTime)
+            </dt>
+
+            <dd>
+                @item["EditTime"]
+            </dd>
+        }
+
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteCom", "Company", FormMethod.Post,new { id = "submit_Form"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" id="btnDelete"/> |
+            @Html.ActionLink("Back to List", "GetAllCompany")
+        </div>
+    }
+</div>

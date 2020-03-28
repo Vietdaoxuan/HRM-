@@ -1,0 +1,360 @@
+﻿@model HRM.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmployeeCVModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (System.Data.DataRow item in ViewBag.emp.Rows)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.VLastName)
+            </dt>
+
+            <dd>
+                @item["VLastName"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VFirstName)
+            </dt>
+
+            <dd>
+                @item["VFirstName"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NickName)
+            </dt>
+
+            <dd>
+                @item["NickName"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DOB)
+            </dt>
+
+            <dd>
+                @item["DOB"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @item["Gender"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSMaritalID)
+            </dt>
+
+            <dd>
+                @item["LSMaritalID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Born_District)
+            </dt>
+
+            <dd>
+                @item["Born_District"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Born_LSProvinceID)
+            </dt>
+
+            <dd>
+                @item["Born_LSProvinceID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Native_District)
+            </dt>
+
+            <dd>
+                @item["Native_District"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Native_LSProvinceID)
+            </dt>
+
+            <dd>
+                @item["Native_LSProvinceID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSEthnicID)
+            </dt>
+
+            <dd>
+                @item["LSEthnicID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IDNo)
+            </dt>
+
+            <dd>
+                @item["IDNo"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IDIssuedDate)
+            </dt>
+
+            <dd>
+                @item["IDIssuedDate"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IDIssuedPlace)
+            </dt>
+
+            <dd>
+                @item["IDIssuedPlace"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mobifone)
+            </dt>
+
+            <dd>
+                @item["Mobifone"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </dt>
+
+            <dd>
+                @item["Telephone"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @item["Email"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSNationalityID)
+            </dt>
+
+            <dd>
+                @item["LSNationalityID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSCultureLevelID)
+            </dt>
+
+            <dd>
+                @item["LSCultureLevelID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ScanCode)
+            </dt>
+
+            <dd>
+                @item["ScanCode"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @item["Note"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Creater)
+            </dt>
+
+            <dd>
+                @item["Creater"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </dt>
+
+            <dd>
+                @item["CreateTime"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Editer)
+            </dt>
+
+            <dd>
+                @item["Editer"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EditTime)
+            </dt>
+
+            <dd>
+                @item["EditTime"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BankNo)
+            </dt>
+
+            <dd>
+                @item["BankNo"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSBankID)
+            </dt>
+
+            <dd>
+                @item["LSBankID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsEmpBook)
+            </dt>
+
+            <dd>
+                @item["IsEmpBook"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsEmpCode)
+            </dt>
+
+            <dd>
+                @item["IsEmpCode"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsUniform)
+            </dt>
+
+            <dd>
+                @item["IsUniform"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsTrain)
+            </dt>
+
+            <dd>
+                @item["IsTrain"]
+            </dd>
+        }
+        @foreach (System.Data.DataRow item1 in ViewBag.emp1.Rows)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.EmpCode)
+            </dt>
+            <dd>
+                @item1["EmpCode"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EmpCodeOld)
+            </dt>
+            <dd>
+                @item1["EmpCodeOld"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd>
+                @item1["StartDate"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSCompanyID)
+            </dt>
+            <dd>
+                @item1["LSCompanyID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSLevel1ID)
+            </dt>
+            <dd>
+                @item1["LSLevel1ID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSLevel2ID)
+            </dt>
+            <dd>
+                @item1["LSLevel2ID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSLevel3ID)
+            </dt>
+            <dd>
+                @item1["LSLevel3ID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSLevel4ID)
+            </dt>
+            <dd>
+                @item1["LSLevel4ID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSPositionID)
+            </dt>
+            <dd>
+                @item1["LSPositionID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSJobTitleID)
+            </dt>
+            <dd>
+                @item1["LSJobTitleID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSLocationID)
+            </dt>
+            <dd>
+                @item1["LSLocationID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LSEmpTypeID)
+            </dt>
+            <dd>
+                @item1["LSEmpTypeID"]
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+            <dd>
+                @item1["Active"]
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "GetAllEmp")
+</p>
