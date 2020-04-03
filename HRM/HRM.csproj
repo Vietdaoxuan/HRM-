@@ -255,22 +255,26 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Class\MD5Encryption.cs" />
     <Compile Include="Class\TConverter.cs" />
+    <Compile Include="Controllers\api\BankAPIController.cs" />
+    <Compile Include="Controllers\api\CompanyAPIController.cs" />
+    <Compile Include="Controllers\api\CultureLevelAPIController.cs" />
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CultureLevelController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
-    <Compile Include="Controllers\api\TestController.cs" />
+    <Compile Include="Controllers\api\EmpAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
-    <Compile Include="Models\EmployeeCVAction.cs" />
     <Compile Include="Models\EmployeeCVModel.cs" />
     <Compile Include="Class\DataAccessLayer.cs" />
     <Compile Include="Models\LSBankModel.cs" />
     <Compile Include="Models\LSCompanyModel.cs" />
+    <Compile Include="Models\LSCultureLevelModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -393,8 +397,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Employee\GetAllEmp.cshtml" />
-    <Content Include="Views\Company\GetAllCompany.cshtml" />
     <Content Include="Views\Sweet\Alert.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
@@ -414,6 +416,7 @@
     <Content Include="Views\Bank\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\CultureLevel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

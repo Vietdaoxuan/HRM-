@@ -143,7 +143,8 @@
 
                 <div class="form-group col-md-10">
                     <label for="LSCultureLevelID" class="control-label col-md-2">LSCultureLevelID</label>
-                    <input type="text" class="form-control" id="LSCultureLevelID" name="LSCultureLevelID" />
+                    @Html.DropDownList("LSCultureLevelID", (IEnumerable<SelectListItem>)ViewBag.CulLevel, "--Select Culture Level--", htmlAttributes: new { @class = "form-control", @id = "LSCultureLevelID" })
+
                 </div>
 
                 <div class="form-group col-md-10">
@@ -296,7 +297,7 @@
             $('#listEmployee').DataTable({
                 ajax: {
                     //url: "/Employee/GetData",
-                    url: "/api/Test/GetAllEmp",
+                    url: "/api/EmpAPI/GetAllEmp",
                     type: "GET",
                     datatype: "json",
                     dataSrc: ""
@@ -399,7 +400,7 @@
                 var data = $("#Submitform").serialize();
                 $.ajax({
                     type: "Post",
-                    url: "/api/Test/Create",
+                    url: "/api/EmpAPI/Create",
                     data: data,
                     success: function (data) {
                         console.log(data);
@@ -425,7 +426,7 @@
             $("#Infor-tab").tab('show');
             $.ajax({
                 type: 'GET',
-                url: '/api/Test/GetEmpByID/' + ID,
+                url: '/api/EmpAPI/GetEmpByID/' + ID,
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
@@ -477,7 +478,7 @@
                 var data = $("#Submitform").serialize();
                 $.ajax({
                     type: "Put",
-                    url: "/api/Test/UpdateEmp/" + ID,
+                    url: "/api/EmpAPI/UpdateEmp/" + ID,
                     data: data,
                     success: function (data) {
                         console.log(data);
@@ -505,7 +506,7 @@
                 if (isConfirm) {
                     $.ajax({
                         type: 'Post',
-                        url: '/api/Test/DeleteEmp/' + EmpID,
+                        url: '/api/EmpAPI/DeleteEmp/' + EmpID,
                         success: function (response) {
                             window.location.href = "/Employee/Index";
                         },

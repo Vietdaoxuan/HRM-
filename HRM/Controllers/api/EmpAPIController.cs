@@ -13,7 +13,7 @@ using System.Web.Http.Routing;
 
 namespace HRM.Controllers
 {
-    public class TestController : ApiController
+    public class EmpAPIController : ApiController
     {
         // GET api/<controller>
         [HttpGet]
@@ -33,7 +33,7 @@ namespace HRM.Controllers
         public IHttpActionResult Create(Employee employee)
         {
             DataAccessLayer act = new DataAccessLayer();
-            employee.EmpID = act.getOutPut("sp_AutoGenID_Emp_Test", "@EmpID");
+            employee.EmpID = act.getOutPut("sp_AutoGenID_Emp_EmpAPI", "@EmpID");
             SqlParameter[] parameters =
             {
                 new SqlParameter("@EmpID",SqlDbType.NVarChar,12){ Value = employee.EmpID ?? (object)DBNull.Value},

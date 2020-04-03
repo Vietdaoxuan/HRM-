@@ -24,6 +24,7 @@ namespace HRM.Controllers
             DataAccessLayer act = new DataAccessLayer();
             ViewBag.comID = act.ToSelectList("LSCompanyID", "Name", "select * from tbl_Company");
             ViewBag.BankID = act.ToSelectList("LSBankID", "Name", "select * from tbl_LSBank");
+            ViewBag.CulLevel = act.ToSelectList("LSCultureLevelID", "Name", "select * from tbl_LSCultureLevel");
             return View();
         }
     }

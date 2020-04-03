@@ -118,8 +118,8 @@
             document.getElementById("Infor-tab").innerHTML = "Create";
             $('#listCompany').DataTable({
                 ajax: {
-                    url: "/Company/GetData",
-                    type: "POST",
+                    url: "/api/CompanyAPI/GetData",
+                    type: "GET",
                     datatype: "json",
                     dataSrc: ""
                 },
@@ -191,7 +191,7 @@
                 var data = $("#Submitform").serialize();
                 $.ajax({
                     type: "Post",
-                    url: "/Company/CreateCompany",
+                    url: "/api/CompanyAPI/Create",
                     data: data,
                     success: function (result) {
                         alert("Success!");
@@ -209,7 +209,7 @@
             $("#Infor-tab").tab('show');
             $.ajax({
                 type: 'GET',
-                url: '/Company/UpdateCom/' + ID,
+                url: '/api/CompanyAPI/GetDataByID/' + ID,
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
@@ -236,9 +236,8 @@
                 console.log(LSCompanyID);
                 var data = $("#Submitform").serialize();
                 $.ajax({
-                    type: "Post",
-                    url: '/Company/UpdateCom/' + ID,
-                    dataType: 'json',
+                    type: "Put",
+                    url: '/api/CompanyAPI/Update/' + ID,
                     data: data,
                     success: function (result) {
                         alert("success!")
@@ -265,9 +264,9 @@
                     if (isConfirm) {
                         $.ajax({
                             type: 'POST',
-                            url: '/Company/DeleteCom/' + LSCompanyID,
-                            success: function (response) {
-                                window.location.href = response.Url;
+                            url: '/api/CompanyAPI/Delete/' + LSCompanyID,
+                            success: function (result) {
+                                window.location.href = "/Company/Index"
                             },
                             error: function (data) {
                                 swal("NOT Deleted!", "Something went wrong.", "error");
