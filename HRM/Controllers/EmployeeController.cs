@@ -25,6 +25,9 @@ namespace HRM.Controllers
             ViewBag.comID = act.ToSelectList("LSCompanyID", "Name", "select * from tbl_Company");
             ViewBag.BankID = act.ToSelectList("LSBankID", "Name", "select * from tbl_LSBank");
             ViewBag.CulLevel = act.ToSelectList("LSCultureLevelID", "Name", "select * from tbl_LSCultureLevel");
+            ViewBag.Province = act.ToSelectList("LSProvinceID", "Name", "select * from tbl_LSProvince");
+            ViewBag.District = act.ToSelectList("LSDistrictID", "Name", "select * from tbl_LSDistrict");
+            ViewBag.Marital = act.ToSelectList("LSMaritalID", "Name", "select * from tbl_LSMarital");
             return View();
         }
     }

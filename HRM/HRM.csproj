@@ -258,11 +258,21 @@
     <Compile Include="Controllers\api\BankAPIController.cs" />
     <Compile Include="Controllers\api\CompanyAPIController.cs" />
     <Compile Include="Controllers\api\CultureLevelAPIController.cs" />
+    <Compile Include="Controllers\api\DistrictAPIController.cs" />
+    <Compile Include="Controllers\api\EthnicAPIController.cs" />
+    <Compile Include="Controllers\api\MaritalAPIController.cs" />
+    <Compile Include="Controllers\api\NationalityAPIController.cs" />
+    <Compile Include="Controllers\api\ProvinceAPIController.cs" />
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CultureLevelController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EthnicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaritalController.cs" />
+    <Compile Include="Controllers\NationalityController.cs" />
+    <Compile Include="Controllers\ProvinceController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
     <Compile Include="Controllers\api\EmpAPIController.cs" />
     <Compile Include="Global.asax.cs">
@@ -272,9 +282,14 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\EmployeeCVModel.cs" />
     <Compile Include="Class\DataAccessLayer.cs" />
+    <Compile Include="Models\LSEthnicModel.cs" />
     <Compile Include="Models\LSBankModel.cs" />
     <Compile Include="Models\LSCompanyModel.cs" />
     <Compile Include="Models\LSCultureLevelModel.cs" />
+    <Compile Include="Models\LSDistrict.cs" />
+    <Compile Include="Models\LSMaritalModel.cs" />
+    <Compile Include="Models\LSNationalityModel.cs" />
+    <Compile Include="Models\LSProvince.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +432,11 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\CultureLevel\Index.cshtml" />
+    <Content Include="Views\Province\Index.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
+    <Content Include="Views\Ethnic\Index.cshtml" />
+    <Content Include="Views\Nationality\Index.cshtml" />
+    <Content Include="Views\Marital\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -57,7 +57,7 @@ namespace HRM.Models
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlParameter prms = new SqlParameter(prms_sp, SqlDbType.NVarChar, 12);
                     prms.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(prms);
+                    cmd.Parameters.Add(prms);   
                     cmd.ExecuteNonQuery();
                     result = cmd.Parameters[prms_sp].Value.ToString();
                 }
