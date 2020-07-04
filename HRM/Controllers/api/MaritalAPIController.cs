@@ -1,4 +1,5 @@
 ﻿using HRM.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace HRM.Controllers.api
 {
@@ -15,14 +17,30 @@ namespace HRM.Controllers.api
         public IHttpActionResult GetData()
         {
             DataAccessLayer act = new DataAccessLayer();
-            LSMaritalModel Marital = new LSMaritalModel();
             SqlParameter[] parameters =
             {
                 new SqlParameter("@ACTION","SelectAll")
             };
             DataSet ds = act.Generic("sp_InsertUpdateDelete_tblLSMarital", parameters);
-            var Object = act.ConvertDataTableToJSON(ds.Tables[0]);
-            return Ok(Object);
+            List<LSMaritalModel> list = new List<LSMaritalModel>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                LSMaritalModel Marital = new LSMaritalModel();
+                Marital.LSMaritalID = ds.Tables[0].Rows[i]["LSMaritalID"].ToString();
+                Marital.LSMaritalCode = ds.Tables[0].Rows[i]["LSMaritalCode"].ToString();
+                Marital.Name = ds.Tables[0].Rows[i]["Name"].ToString();
+                if(ds.Tables[0].Rows[i]["Rank"] != DBNull.Value)
+                {
+                    Marital.Rank = Convert.ToInt32(ds.Tables[0].Rows[i]["Rank"]);
+                }
+                else
+                {
+                    Marital.Rank = null;
+                }
+                Marital.Used = Convert.ToBoolean(ds.Tables[0].Rows[i]["Used"]);
+                list.Add(Marital);
+            }
+            return Ok(list);
         }
 
         [HttpPost]

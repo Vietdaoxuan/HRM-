@@ -78,27 +78,27 @@
 
                 <div class="form-group col-md-10">
                     <label for="LSMaritalID" class="control-label col-md-2">LSMaritalID</label>
-                    <input type="text" class="form-control" id="LSMaritalID" name="LSMaritalID" />
+                    @Html.DropDownList("LSMaritalID", (IEnumerable<SelectListItem>)ViewBag.Marital, "--Select Marital--", htmlAttributes: new { @class = "form-control", @id = "LSMaritalID" })
                 </div>
 
                 <div class="form-group col-md-10">
                     <label for="Born_District" class="control-label col-md-2">Born_District</label>
-                    @Html.DropDownList("LSDistrictID", (IEnumerable<SelectListItem>)ViewBag.District, "--Select District--", htmlAttributes: new { @class = "form-control", @id = "LSDistrictID" })
+                    @Html.DropDownList("Born_District", (IEnumerable<SelectListItem>)ViewBag.District, "--Select District--", htmlAttributes: new { @class = "form-control", @id = "Born_District" })
                 </div>
 
                 <div class="form-group col-md-10">
                     <label for="Born_LSProvinceID" class="control-label col-md-2">Born_LSProvinceID</label>
-                    @Html.DropDownList("LSProvinceID", (IEnumerable<SelectListItem>)ViewBag.Province, "--Select Province--", htmlAttributes: new { @class = "form-control", @id = "LSProvinceID" })
+                    @Html.DropDownList("Born_LSProvinceID", (IEnumerable<SelectListItem>)ViewBag.Province, "--Select Province--", htmlAttributes: new { @class = "form-control", @id = "Born_LSProvinceID" })
                 </div>
 
                 <div class="form-group col-md-10">
                     <label for="Native_District" class="control-label col-md-2">Native_District</label>
-                    @Html.DropDownList("LSDistrictID", (IEnumerable<SelectListItem>)ViewBag.District, "--Select District--", htmlAttributes: new { @class = "form-control", @id = "LSDistrictID" })
+                    @Html.DropDownList("Native_District", (IEnumerable<SelectListItem>)ViewBag.District, "--Select District--", htmlAttributes: new { @class = "form-control", @id = "Native_District" })
                 </div>
 
                 <div class="form-group col-md-10">
                     <label for="Native_LSProvinceID" class="control-label col-md-2">Native_LSProvinceID</label>
-                    @Html.DropDownList("LSProvinceID", (IEnumerable<SelectListItem>)ViewBag.Province, "--Select Province--", htmlAttributes: new { @class = "form-control", @id = "LSProvinceID" })
+                    @Html.DropDownList("Native_LSProvinceID", (IEnumerable<SelectListItem>)ViewBag.Province, "--Select Province--", htmlAttributes: new { @class = "form-control", @id = "Native_LSProvinceID" })
                 </div>
 
                 <div class="form-group col-md-10">
@@ -355,7 +355,7 @@
 
         $('#listEmployee thead tr').append('<th/>');
 
-        function AddEmployee(EmpID) {
+        function AddEmployee() {
             document.getElementById("myTabContent").style.marginBottom = '155em';
             $("#EmpID").val("");
             $("#VLastName").val("");
@@ -505,7 +505,7 @@
             function (isConfirm) {
                 if (isConfirm) {
                     $.ajax({
-                        type: 'Post',
+                        method: 'Delete',
                         url: '/api/EmpAPI/DeleteEmp/' + EmpID,
                         success: function (response) {
                             window.location.href = "/Employee/Index";

@@ -69,6 +69,7 @@
 <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
@@ -78,9 +79,10 @@
             document.getElementById("Infor-tab").innerHTML = "Create";
             $('#listMarital').DataTable({
                 ajax: {
-                    url: "/api/MaritalAPI/GetData",
+                    //url: "/api/MaritalAPI/GetData",
+                    url: "Marital/GetListApi",
                     type: "Get",
-                    datatype: "json",
+                    //datatype: "json",
                     dataSrc: ""
                 },
 
@@ -98,11 +100,11 @@
                         "data": "Name"
                     },
                     {
-                        "targets": [3],
+                        "targets": [4],
                         "data": "Used"
                     },
                     {
-                        "targets": [4],
+                        "targets": [5],
                         "data": "LSMaritalID",
                         "render": function (data, type, row, meta) {
                             return "<a class = 'btn btn-warning nav-link' href = '#Infor' data-toggle='tab' onclick = 'EditMarital(\"" + data + "\")'>Edit</a>" +
@@ -165,7 +167,8 @@
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
-                    for (var i = 0; i < data.length; i++) {
+                    for (var i = 0; i < data.len
+                        gth; i++) {
                         if (data[i].LSMaritalID === ID) {
                             $("#LSMaritalID").val(data[i].LSMaritalID);
                             $("#LSMaritalCode").val(data[i].LSMaritalCode);
